@@ -20,7 +20,7 @@ jobs:
         with:
            workflow: SimpleTriggerTest.yml
            repo: MathanRasu/Repo_A
-           inputs: '{ "ref": "Test-WorkFlow-RepoA-02" }'
+           #inputs: '{ "ref": "Test-WorkFlow-RepoA-02" }'
            token: "${{ secrets.REPO_B_PAT_TOKEN }}"
           
           # token: ${{ secrets.REPO_B_PAT_TOKEN }}

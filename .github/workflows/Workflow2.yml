@@ -13,10 +13,17 @@ jobs:
       - name: Checkout Repo B
         uses: actions/checkout@v2  # This step is necessary to check out the code
 
-      - name: Trigger Repo A Workflow using Custom Action
-        uses: ./.github/actions/trigger-repo-a  # Path to your custom action
+      # - name: Trigger Repo A Workflow using Custom Action
+      #   uses: ./.github/actions/trigger-repo-a  # Path to your custom action
+      - name: Invoke workflow in another repo with inputs
+        uses: benc-uk/workflow-dispatch@v1
         with:
-          token: ${{ secrets.REPO_B_PAT_TOKEN }}
-          repo: MathanRasu/Repo_A
-          workflow_file: SimpleTriggerTest.yml
-          ref: Test-WorkFlow-RepoA-02
+           workflow: SimpleTriggerTest.yml
+           repo: MathanRasu/Repo_A
+           inputs: '{ "ref": "Test-WorkFlow-RepoA-02" }'
+           token: "${{ secrets.REPO_B_PAT_TOKEN }}"
+          
+          # token: ${{ secrets.REPO_B_PAT_TOKEN }}
+          # repo: MathanRasu/Repo_A
+          # workflow_file: SimpleTriggerTest.yml
+          # ref: Test-WorkFlow-RepoA-02

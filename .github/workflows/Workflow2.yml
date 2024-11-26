@@ -1,4 +1,4 @@
-name: Trigger Repo A Workflow with Custom Action
+name: Trigger Repo A Workflow
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Trigger Repo A Workflow using Custom Action
-        uses: MathanRasu/trigger-repo-a-action@v1.0.0
+        uses: ./.github/actions/trigger-repo-a
         with:
           token: ${{ secrets.REPO_B_PAT_TOKEN }}
           repo: MathanRasu/Repo_A

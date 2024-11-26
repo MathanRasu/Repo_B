@@ -18,5 +18,5 @@ jobs:
         with:
           token: ${{ secrets.REPO_B_PAT_TOKEN }}
           repo: MathanRasu/Repo_A
-          workflow_file: Test-WorkFlow-RepoA-TestBranch.yml
+          workflow_file: SimpleTriggerTest.yml
           ref: Test-WorkFlow-RepoA-02

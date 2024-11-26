@@ -1,0 +1,26 @@
+name: 'Trigger Repo A Workflow'
+description: 'Triggers a workflow in Repo A via the GitHub API'
+inputs:
+  token:
+    description: 'GitHub token with permissions to trigger workflows'
+    required: true
+  repo:
+    description: 'Target repository to trigger the workflow'
+    required: true
+  workflow_file:
+    description: 'Workflow file in Repo A to trigger'
+    required: true
+  ref:
+    description: 'GitHub branch or commit reference'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Trigger Repo A Workflow using GitHub API
+      shell: bash
+      run: |
+        curl -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer ${{ inputs.token }}" \
+          "https://api.github.com/repos/${{ inputs.repo }}/actions/workflows/${{ inputs.workflow_file }}/dispatches" \
+          -d "{\"ref\":\"${{ inputs.ref }}\",\"inputs\":{\"custom_input\":\"Triggered by Repo B\"}}"

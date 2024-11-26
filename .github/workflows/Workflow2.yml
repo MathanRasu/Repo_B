@@ -9,7 +9,7 @@ jobs:
   trigger-repo-a:
     runs-on: ubuntu-latest
 
-    steps:
+    steps: 
       - name: Trigger Repo A Workflow
         env:
           PAT: ${{ secrets.REPO_B_PAT_TOKEN }}  # The secret containing the PAT for authentication

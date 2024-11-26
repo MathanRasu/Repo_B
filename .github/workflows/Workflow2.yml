@@ -1,0 +1,23 @@
+name: Workflow2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  trigger-repo-a:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Repo A Workflow
+        env:
+          PAT: ${{ secrets.REPO_A_PAT }} # Use the PAT stored as a secret
+        run: |
+          curl -X POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "Authorization: Bearer $PAT" \
+          https://api.github.com/repos/MathanRasu/Repo_A/actions/workflows/workflow-test1.yml/dispatches \
+          -d '{
+            "ref": "main",
+            "inputs": {
+              "custom_input": "Triggered by Repo B"
+            }
+          }'

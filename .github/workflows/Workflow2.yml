@@ -3,7 +3,7 @@ name: Trigger Repo A Workflow
 on:
   push:
     branches:
-      - main
+      - main  # Trigger the workflow on push to the main branch
 
 jobs:
   trigger-repo-a:
@@ -11,9 +11,9 @@ jobs:
 
     steps:
       - name: Trigger Repo A Workflow using Custom Action
-        uses: ./.github/actions/trigger-repo-a
+        uses: ./.github/actions/trigger-repo-a  # Path to your custom action
         with:
-          token: ${{ secrets.REPO_B_PAT_TOKEN }}
-          repo: MathanRasu/Repo_A
-          workflow_file: Test-WorkFlow-RepoA-TestBranch.yml
-          ref: Test-WorkFlow-RepoA-02
+          token: ${{ secrets.REPO_B_PAT_TOKEN }}  # Ensure this secret is set in your repository
+          repo: MathanRasu/Repo_A  # Target repository
+          workflow_file: Test-WorkFlow-RepoA-TestBranch.yml  # The workflow file to trigger in Repo A
+          ref: Test-WorkFlow-RepoA-02  # Branch to trigger the workflow in Repo A

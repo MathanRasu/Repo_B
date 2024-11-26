@@ -10,10 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repo B
+        uses: actions/checkout@v2  # This step is necessary to check out the code
+
       - name: Trigger Repo A Workflow using Custom Action
         uses: ./.github/actions/trigger-repo-a  # Path to your custom action
         with:
-          token: ${{ secrets.REPO_B_PAT_TOKEN }}  # Ensure this secret is set in your repository
-          repo: MathanRasu/Repo_A  # Target repository
-          workflow_file: Test-WorkFlow-RepoA-TestBranch.yml  # The workflow file to trigger in Repo A
-          ref: Test-WorkFlow-RepoA-02  # Branch to trigger the workflow in Repo A
+          token: ${{ secrets.REPO_B_PAT_TOKEN }}
+          repo: MathanRasu/Repo_A
+          workflow_file: Test-WorkFlow-RepoA-TestBranch.yml
+          ref: Test-WorkFlow-RepoA-02

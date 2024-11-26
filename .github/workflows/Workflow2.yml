@@ -17,5 +17,5 @@ jobs:
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $PAT" \
-            https://api.github.com/repos/MathanRasu/Repo_A/actions/workflows/Test-WorkFlow-RepoA-02.yml/dispatches \
+            https://api.github.com/repos/MathanRasu/Repo_A/actions/workflows/Test-WorkFlow-RepoA-TestBranch.yml/dispatches \
             -d "{\"ref\":\"Test-WorkFlow-RepoA-02\",\"inputs\":{\"custom_input\":\"Triggered by Repo B on main branch\"}}"

@@ -1,21 +1,19 @@
-name: Trigger Repo A Workflow
+name: Trigger Repo A Workflow with Custom Action
 
 on:
   push:
     branches:
-      - main  # Triggers when changes are pushed to the main branch of Repo B
+      - main
 
 jobs:
   trigger-repo-a:
     runs-on: ubuntu-latest
 
-    steps: 
-      - name: Trigger Repo A Workflow
-        env:
-          PAT: ${{ secrets.REPO_B_PAT_TOKEN }}  # The secret containing the PAT for authentication
-        run: |
-          curl -X POST \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer $PAT" \
-            https://api.github.com/repos/MathanRasu/Repo_A/actions/workflows/Test-WorkFlow-RepoA-TestBranch.yml/dispatches \
-            -d '{"ref":"Test-WorkFlow-RepoA-02","inputs":{"custom_input":"Triggered by Repo B on main branch"}}'
+    steps:
+      - name: Trigger Repo A Workflow using Custom Action
+        uses: MathanRasu/trigger-repo-a-action@v1.0.0
+        with:
+          token: ${{ secrets.REPO_B_PAT_TOKEN }}
+          repo: MathanRasu/Repo_A
+          workflow_file: Test-WorkFlow-RepoA-TestBranch.yml
+          ref: Test-WorkFlow-RepoA-02

@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Trigger Repo A Workflow
         env:
-          PAT: ${{ secrets.REPO_A_PAT }}  # The secret containing the PAT
+          PAT: ${{ secrets.REPO_B_PAT_TOKEN }}  # The secret containing the PAT
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
